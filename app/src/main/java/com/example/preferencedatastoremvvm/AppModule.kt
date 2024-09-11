@@ -7,6 +7,12 @@ import androidx.datastore.dataStoreFile
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import com.elvishew.xlog.LogLevel
+import com.elvishew.xlog.XLog
+import com.elvishew.xlog.flattener.ClassicFlattener
+import com.elvishew.xlog.printer.AndroidPrinter
+import com.elvishew.xlog.printer.file.FilePrinter
+import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator
 import com.example.preferencedatastoremvvm.repo.OperationRepository
 import com.example.preferencedatastoremvvm.repo.DataStoreRepositoryImpl
 import dagger.Module
@@ -53,5 +59,22 @@ object AppModule {
         PREFERENCES_NAME, Context.MODE_PRIVATE)
 
 
+/*    @Provides
+    @Singleton
+    fun provideXLog() {
+        val androidPrinter = AndroidPrinter() // Print logs to Logcat.
+        val filePrinter = FilePrinter.Builder("/sdcard/xlog/") // Save logs to file.
+            .fileNameGenerator(DateFileNameGenerator())       // Generate file names by date.
+            .flattener(ClassicFlattener())                    // Flatten logs in classic format.
+            .build()
+
+        // Initialize XLog
+        return XLog.init(
+            LogLevel.ALL,    // Log level
+            androidPrinter,  // Print logs to logcat
+            filePrinter      // Print logs to a file
+        )
+
+    }*/
 
 }
