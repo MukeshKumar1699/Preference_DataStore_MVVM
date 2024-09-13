@@ -1,9 +1,7 @@
 package com.example.preferencedatastoremvvm
 
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -17,7 +15,6 @@ import com.elvishew.xlog.printer.AndroidPrinter
 import com.elvishew.xlog.printer.Printer
 import com.elvishew.xlog.printer.file.FilePrinter
 import com.elvishew.xlog.printer.file.naming.ChangelessFileNameGenerator
-import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator
 import com.elvishew.xlog.printer.file.writer.SimpleWriter
 import com.example.preferencedatastoremvvm.databinding.ActivityMainBinding
 import com.example.preferencedatastoremvvm.viewmodel.DataViewModel
@@ -25,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.File
 import java.time.LocalDate
 import kotlin.random.Random
@@ -71,7 +67,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        initXlog()
         XLog.d("MainActivity OnCreate")
         binding = ActivityMainBinding.inflate(layoutInflater)
 
@@ -89,29 +84,17 @@ class MainActivity : AppCompatActivity() {
 
         logRandomMessagesInBackground()
 
-
-
-
-
         setContentView(binding.root)
     }
 
     fun logRandomMessagesInBackground() {
-        val logFile = File(filesDir, "logs/app_log.txt")
         val maxSize = 4 * 1024 * 1024 // 4 MB
 
         // Use CoroutineScope for background work
         CoroutineScope(Dispatchers.IO).launch {
-            while (logFile.length() < maxSize) {
+            while (1 == 1) {
                 val randomMessage = "Random log message: ${Random.nextInt()}"
                 XLog.d(randomMessage)
-
-                // Optional: Add a small delay to avoid flooding logs too quickly
-                kotlinx.coroutines.delay(100)
-            }
-
-            withContext(Dispatchers.Main) {
-                XLog.d("Log file reached 4MB size.")
             }
         }
     }
