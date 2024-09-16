@@ -2,20 +2,10 @@ package com.example.preferencedatastoremvvm
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.elvishew.xlog.BuildConfig
-import com.elvishew.xlog.LogConfiguration
-import com.elvishew.xlog.LogLevel
 import com.elvishew.xlog.XLog
-import com.elvishew.xlog.flattener.ClassicFlattener
-import com.elvishew.xlog.printer.AndroidPrinter
-import com.elvishew.xlog.printer.Printer
-import com.elvishew.xlog.printer.file.FilePrinter
-import com.elvishew.xlog.printer.file.naming.ChangelessFileNameGenerator
-import com.elvishew.xlog.printer.file.writer.SimpleWriter
 import com.example.preferencedatastoremvvm.BaseApplication.Companion.isLoggingPaused
 import com.example.preferencedatastoremvvm.databinding.ActivityMainBinding
 import com.example.preferencedatastoremvvm.viewmodel.DataViewModel
@@ -23,13 +13,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.File
-import java.time.LocalDate
 import kotlin.random.Random
 
 @AndroidEntryPoint
@@ -54,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.saveData(name, age)
         }
 
-        binding.dispTv.setOnClickListener{
+        binding.dispTv.setOnClickListener {
             binding.dispTv.text = viewModel.getData()
         }
 

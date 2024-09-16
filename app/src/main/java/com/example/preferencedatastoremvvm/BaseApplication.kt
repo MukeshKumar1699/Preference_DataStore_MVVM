@@ -10,11 +10,13 @@ import java.util.UUID
 class BaseApplication : Application() {
 
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         super.onCreate()
-        LoggerHelper.initLogger(this, LoggerHelper.generateLogFileName(UUID.randomUUID().toString()))
+        LoggerHelper.initLogger(
+            this,
+            LoggerHelper.generateLogFileName(UUID.randomUUID().toString())
+        )
     }
 
     companion object {
