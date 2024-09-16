@@ -5,9 +5,9 @@ import android.util.Log
 import com.elvishew.xlog.printer.file.backup.BackupStrategy
 import java.io.File
 
-class CustomBackupStrategy(private val context: Context) : BackupStrategy {
+class CustomBackupStrategy() : BackupStrategy {
 
-    fun deleteOldLogFilesByday(maxDays: Int) {
+   /* fun deleteOldLogFilesByday(maxDays: Int) {
         val logsDirectory = File(context.filesDir, "logs")
         val currentTime = System.currentTimeMillis()
 
@@ -33,7 +33,7 @@ class CustomBackupStrategy(private val context: Context) : BackupStrategy {
         } else {
             Log.d("LogCleanup", "Logs directory does not exist or is not a directory")
         }
-    }
+    }*/
 
 
     override fun shouldBackup(file: File?): Boolean {

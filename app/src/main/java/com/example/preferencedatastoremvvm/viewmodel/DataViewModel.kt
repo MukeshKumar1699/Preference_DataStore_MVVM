@@ -3,6 +3,8 @@ package com.example.preferencedatastoremvvm.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.elvishew.xlog.XLog
+import com.example.preferencedatastoremvvm.LoggerHelper
 import com.example.preferencedatastoremvvm.repo.DataStoreRepositoryImpl
 import com.example.preferencedatastoremvvm.repo.OperationRepository
 import com.example.preferencedatastoremvvm.repo.SharedPreferenceMigrationRepoImpl
@@ -10,6 +12,7 @@ import com.example.preferencedatastoremvvm.repo.SharedPreferenceRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +27,12 @@ class DataViewModel @Inject constructor(
 
         saveName(name)
         saveAge(age)
+
+        XLog.i("Name and Age added to log: $name, $age")
+
+
+//        LoggerHelper.renameLogFile()
+        XLog.i("done with viewModel file")
     }
 
     fun getData(): String  {
