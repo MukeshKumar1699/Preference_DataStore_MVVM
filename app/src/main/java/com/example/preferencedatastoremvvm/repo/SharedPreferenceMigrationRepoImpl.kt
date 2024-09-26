@@ -1,7 +1,6 @@
 package com.example.preferencedatastoremvvm.repo
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
@@ -16,16 +15,16 @@ import javax.inject.Named
 
 class SharedPreferenceMigrationRepoImpl @Inject constructor(
     private val context: Context,
-    @Named("pref_name")private val preferenceName: String
+    @Named("pref_name") private val preferenceName: String
 
-): OperationRepository {
+) : OperationRepository {
 
     private val TAG = "SharedPreferenceMigration"
 
     private val Context.dataStore by lazy {
         PreferenceDataStoreFactory.create(
             migrations = listOf(SharedPreferencesMigration(context, preferenceName)),
-            produceFile = {context.preferencesDataStoreFile("New_dataStore_Migration")}
+            produceFile = { context.preferencesDataStoreFile("New_dataStore_Migration") }
         )
     }
 

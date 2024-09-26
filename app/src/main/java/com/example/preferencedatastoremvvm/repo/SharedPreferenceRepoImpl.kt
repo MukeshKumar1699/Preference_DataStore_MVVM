@@ -3,11 +3,10 @@ package com.example.preferencedatastoremvvm.repo
 import android.content.SharedPreferences
 import android.util.Log
 import javax.inject.Inject
-import javax.inject.Named
 
 class SharedPreferenceRepositoryImpl @Inject constructor(
     private val preferences: SharedPreferences,
-): OperationRepository {
+) : OperationRepository {
 
     private val editor = preferences.edit()
     private val TAG = "SharedPreferenceRepoImp"
@@ -21,7 +20,8 @@ class SharedPreferenceRepositoryImpl @Inject constructor(
     override suspend fun putInt(key: String, value: Int) {
         Log.d(TAG, "putInt: ")
         editor.putInt(key, value)
-        editor.commit()    }
+        editor.commit()
+    }
 
     override suspend fun getString(key: String): String? {
         Log.d(TAG, "getString: ")

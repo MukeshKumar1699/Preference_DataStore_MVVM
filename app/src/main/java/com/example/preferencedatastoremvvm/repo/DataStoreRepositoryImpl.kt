@@ -15,7 +15,6 @@ class DataStoreRepositoryImpl @Inject constructor(
 ) : OperationRepository {
 
 
-
     private val TAG = "DataStoreRepositoryImpl"
     override suspend fun putString(key: String, value: String) {
         Log.d(TAG, "putString: ")
@@ -39,7 +38,7 @@ class DataStoreRepositoryImpl @Inject constructor(
             val preferencesKey = stringPreferencesKey(key)
             val preferences = dataStore.data.first()
             preferences[preferencesKey]
-        }catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
             null
         }
@@ -51,7 +50,7 @@ class DataStoreRepositoryImpl @Inject constructor(
             val preferencesKey = intPreferencesKey(key)
             val preferences = dataStore.data.first()
             preferences[preferencesKey]
-        }catch (e: Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
             null
         }

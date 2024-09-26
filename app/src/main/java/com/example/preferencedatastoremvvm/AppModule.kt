@@ -3,12 +3,11 @@ package com.example.preferencedatastoremvvm
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.datastore.core.DataStore
-import androidx.datastore.dataStoreFile
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.example.preferencedatastoremvvm.repo.OperationRepository
 import com.example.preferencedatastoremvvm.repo.DataStoreRepositoryImpl
+import com.example.preferencedatastoremvvm.repo.OperationRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,20 +37,40 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> =
-         PreferenceDataStoreFactory.create(
+        PreferenceDataStoreFactory.create(
             produceFile = {
                 context.preferencesDataStoreFile("test_preference")
             }
         )
 
     @Provides
-    fun provideDataStoreRepository(dataStore: DataStore<Preferences>): OperationRepository = DataStoreRepositoryImpl(dataStore)
+    fun provideDataStoreRepository(dataStore: DataStore<Preferences>): OperationRepository =
+        DataStoreRepositoryImpl(dataStore)
 
     @Provides
     @Singleton
-    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences = context.getSharedPreferences(
-        PREFERENCES_NAME, Context.MODE_PRIVATE)
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
+        context.getSharedPreferences(
+            PREFERENCES_NAME, Context.MODE_PRIVATE
+        )
 
 
+    /*    @Provides
+        @Singleton
+        fun provideXLog() {
+            val androidPrinter = AndroidPrinter() // Print logs to Logcat.
+            val filePrinter = FilePrinter.Builder("/sdcard/xlog/") // Save logs to file.
+                .fileNameGenerator(DateFileNameGenerator())       // Generate file names by date.
+                .flattener(ClassicFlattener())                    // Flatten logs in classic format.
+                .build()
+
+            // Initialize XLog
+            return XLog.init(
+                LogLevel.ALL,    // Log level
+                androidPrinter,  // Print logs to logcat
+                filePrinter      // Print logs to a file
+            )
+
+        }*/
 
 }
